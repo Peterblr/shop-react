@@ -6,6 +6,8 @@
 
 [view site](https://peterblr.github.io/shop-react/)
 
+![image](https://github.com/Peterblr/shop-react/blob/master/image.png)
+
 ### Technologies:
 - html
 - css
