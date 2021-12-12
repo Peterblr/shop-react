@@ -4,12 +4,14 @@ import { API_KEY, API_URL } from "../../config";
 import Preloader from "../Preloader/Preloader";
 import ProductList from "../ProductList/ProductList";
 import Cart from "../Cart/Cart";
+import BasketList from "../BasketList/BasketList";
 
 function Main() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState([]);
 
+  const [basketShow, setBasketShow] = useState(false);
   console.log();
 
   const AddOrder = (item) => {
@@ -36,6 +38,10 @@ function Main() {
     }
   };
 
+  const handleBasketShow = () => {
+    setBasketShow(!basketShow);
+  };
+
   useEffect(() => {
     fetch(API_URL, { headers: { Authorization: API_KEY } })
       .then((response) => response.json())
@@ -47,11 +53,14 @@ function Main() {
 
   return (
     <MainContainer>
-      <Cart quantity={order.length} />
+      <Cart quantity={order.length} handleBasketShow={handleBasketShow} />
       {loading ? (
         <Preloader />
       ) : (
         <ProductList product={product} AddOrder={AddOrder} />
+      )}
+      {basketShow && (
+        <BasketList order={order} handleBasketShow={handleBasketShow} />
       )}
     </MainContainer>
   );
