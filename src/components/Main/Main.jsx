@@ -10,9 +10,7 @@ function Main() {
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState([]);
-
   const [basketShow, setBasketShow] = useState(false);
-  console.log();
 
   const AddOrder = (item) => {
     const itemIndex = order.findIndex(
@@ -38,8 +36,34 @@ function Main() {
     }
   };
 
+  const RemoveOrder = (itemId) => {
+    const newOrder = order.filter((el) => el.mainId !== itemId);
+    setOrder(newOrder);
+  };
+
   const handleBasketShow = () => {
     setBasketShow(!basketShow);
+  };
+
+  const IncQuantity = (itemId) => {
+    const newOrder = order.map((el) => {
+      if (el.mainId === itemId) {
+        const newQuantity = el.quantity + 1;
+        return { ...el, quantity: newQuantity };
+      } else return el;
+    });
+
+    setOrder(newOrder);
+  };
+  const DecQuantity = (itemId) => {
+    const newOrder = order.map((el) => {
+      if (el.mainId === itemId) {
+        const newQuantity = el.quantity - 1;
+        return { ...el, quantity: newQuantity >= 0 ? newQuantity : 0 };
+      } else return el;
+    });
+
+    setOrder(newOrder);
   };
 
   useEffect(() => {
@@ -60,7 +84,13 @@ function Main() {
         <ProductList product={product} AddOrder={AddOrder} />
       )}
       {basketShow && (
-        <BasketList order={order} handleBasketShow={handleBasketShow} />
+        <BasketList
+          order={order}
+          handleBasketShow={handleBasketShow}
+          RemoveOrder={RemoveOrder}
+          IncQuantity={IncQuantity}
+          DecQuantity={DecQuantity}
+        />
       )}
     </MainContainer>
   );

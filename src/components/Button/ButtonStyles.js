@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const ButtonStyles = styled.button`
   border: none;
-  font-size: 20px;
+  padding: 10px;
+  font-size: 16px;
   font-weight: 300;
-  text-transform: uppercase;
   border-radius: 24px;
   background-color: rgb(255, 7, 110);
   display: table;

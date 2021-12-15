@@ -1,4 +1,16 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const Show = keyframes`
+from {
+    top: 50%;
+    opacity: 0;
+  }
+  
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+`;
 
 export const BasketListContainer = styled.ul`
   position: fixed;
@@ -9,7 +21,7 @@ export const BasketListContainer = styled.ul`
   transform: translate(-50%, -50%);
   color: rgba(255, 255, 100, 0.75);
   background-color: rgba(255, 7, 110, 0.8);
-  height: 20rem;
+  min-height: 20rem;
   width: 50rem;
   max-width: 95%;
   font-size: 1.5rem;
@@ -19,6 +31,7 @@ export const BasketListContainer = styled.ul`
   flex-direction: column;
   justify-content: space-between;
   list-style-type: none;
+  animation: ${Show} 750ms ease-in-out;
 `;
 
 export const List = styled.li`

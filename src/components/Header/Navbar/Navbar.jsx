@@ -7,7 +7,11 @@ function Navbar() {
     <Container>
       <Div1>logo</Div1>
       <Div2>
-        <NavLink href="https://google.com" target="_blank" id="github">
+        <NavLink
+          href="https://github.com/Peterblr/shop-react"
+          target="_blank"
+          id="github"
+        >
           <AiFillGithub />
         </NavLink>
         <NavLink href="https://google.com" target="_blank">
